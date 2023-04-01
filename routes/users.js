@@ -38,8 +38,8 @@ router.get("/:email",(req,res)=>{
 });
 
 // GET by specific ID request: Retrieve a single user with lastName
-router.get("/:lastName",(req,res)=>{
-    const email = req.params.lastName;
+router.get("/lastName/:lastName",(req,res)=>{
+    const lastName = req.params.lastName;
     let filtered_users = users.filter((user) => user.lastName === lastName);
     res.send(filtered_users); //This line is to be replaced with actual return value
 });
