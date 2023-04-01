@@ -30,6 +30,21 @@ router.get("/",(req,res)=>{
   res.send(JSON.stringify({users},null,4));
 });
 
+function getDateFromString(strDate) {
+    let [dd,mm,yyyy] = strDate.split('-')
+    return new Date(yyyy+"/"+mm+"/"+dd);
+}
+
+router.get("/sort",(req,res)=>{
+
+    let sorted_users = users.sort((a, b)=> {
+        a = getDateFromString(a.DOB)
+        b = getDateFromString(b.DOB)
+        return a-b
+    });
+    res.send(JSON.stringify({sorted_users},null,4));
+  });
+
 // GET by specific ID request: Retrieve a single user with email ID
 router.get("/:email",(req,res)=>{
     const email = req.params.email;
